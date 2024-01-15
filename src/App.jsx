@@ -1,9 +1,15 @@
 import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import HeroSection from './HeroSection';
+
 
 const App = () => {
   return (
     <div>
-      <h1 className='text-3xl font-bold'>React + Tailwind Setup</h1>
+     <Header />
+     <HeroSection />  
+     <Footer />
     </div>
   );
 };
