@@ -1,4 +1,5 @@
 import React from 'react';
+import Frame from './assets/frame.png';
 
 const HeroSection = () => {
     return (
@@ -8,7 +9,7 @@ const HeroSection = () => {
 		<div className="container lg:px-20">
 			<div className="grid items-center gap-6 md:grid-cols-2">
 				<div className="flex justify-center md:order-2">
-					<img className="max-md:w-full" src="./assets/frame.png" width="326" height="290" alt="frame" />
+					<img className="max-md:w-full" src={Frame} width="326" height="290" alt="frame" />
 				</div>
 				<div>
 					<h1 className="mb-1.5 text-[56px] font-bold leading-none text-[#F5BF42] lg:text-[73px]">
