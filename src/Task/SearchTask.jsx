@@ -1,13 +1,22 @@
 /* eslint-disable react/no-unknown-property */
-import React from "react";
+import React, { useState } from "react";
 
-const SearchTask = () => {
+const SearchTask = ({onSearch}) => {
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function handleClick(e){
+    e.preventDefault();
+    onSearch(searchTerm);
+  }
+
   return (
     <>
       <form>
         <div className="flex">
           <div className="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
             <input
+              onChange={(e) => setSearchTerm(e.target.value)}
               type="search"
               id="search-dropdown"
               className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none"
@@ -15,6 +24,7 @@ const SearchTask = () => {
               required
             />
             <button
+            onClick={handleClick}
               type="submit"
               className="absolute right-2 top-0 h-full rounded-e-lg text-white md:right-4"
             >

@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-const AddTaskModal = ({onSave}) => {
-    const [task, setTask] = useState({
+const AddTaskModal = ({onSave, taskToUpdate,onCloseClick}) => {
+    const [task, setTask] = useState(taskToUpdate || {
+        /*jodi taskToUpdate thake tobe eta 
+        initial value othobar ekti empty object*/
         id: crypto.randomUUID(),
         title: "",
         description: "",
@@ -10,6 +12,9 @@ const AddTaskModal = ({onSave}) => {
         priority: "",
         isFavorite: ""
     });
+
+    const [isAdd,setIsAdd] = useState(Object.is(taskToUpdate, null));
+    /*Object.is(taskToUpdate, null) = true hobe jokhon taskToUpdate er value null thakbe*/
 
     const handleChange = (e) => {
         let name = e.target.name; /*prothom input er khetre title
@@ -33,7 +38,7 @@ const AddTaskModal = ({onSave}) => {
       z-10 absolute top-1/4 left-1/3
       ">
         <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">
-          Add New Task
+          {isAdd ? "Add Task" : "Update Task"}
         </h2>
 
         <div className="space-y-9 text-white lg:space-y-10">
@@ -100,9 +105,15 @@ const AddTaskModal = ({onSave}) => {
           </div>
         </div>
 
-        <div className="mt-16 flex justify-center lg:mt-20">
+        <div className="mt-16 flex justify-between lg:mt-20">
+        <button
+            onClick={onCloseClick}
+            className="rounded bg-red-600 px-4 py-2 text-white transition-all hover:opacity-80"
+          >
+            Close
+          </button>
           <button
-            onClick={() => onSave(task)}
+            onClick={() => onSave(task, isAdd)}
             type="submit"
             className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
           >

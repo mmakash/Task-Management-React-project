@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaRegStar } from "react-icons/fa";
 
-const TaskList = ({ task }) => {
+const TaskList = ({ task, onEdit, onDelete, onFav}) => {
     return (
         <>
             <div className="overflow-auto">
@@ -37,9 +37,11 @@ const TaskList = ({ task }) => {
                     task.map((task) => (
                       <tr key={task.id} className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
                     <td>
-                      {
+                     <button onClick={() => onFav(task.id)}>
+                     {
                         task.isFavorite ? <FaRegStar className='text-yellow-500' />: <FaRegStar className='text-gray-500'/>
                       }
+                     </button>
                     </td>
                     <td>{task.title}</td>
                     <td>
@@ -65,8 +67,8 @@ const TaskList = ({ task }) => {
                     <td className="text-center">{task.priority}</td>
                     <td>
                       <div className="flex items-center justify-center space-x-3">
-                        <button className="text-red-500">Delete</button>
-                        <button className="text-blue-500">Edit</button>
+                        <button onClick={() => onDelete(task.id)} className="text-red-500">Delete</button>
+                        <button onClick={() => onEdit(task)} className="text-blue-500">Edit</button>
                       </div>
                     </td>
                   </tr>
