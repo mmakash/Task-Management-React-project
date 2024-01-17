@@ -65,11 +65,16 @@ const TaskBoard = () => {
     setTask([...task]);
    }
 
-   function handleFavoriteTask(task){
-    const taskIndex = task.findIndex((t) => t.id === task.id);
-    const newTask = [...task];
-    newTask[taskIndex].isFavorite = !newTask[taskIndex].isFavorite;
-    setTask(newTask);
+   function handleFavoriteTask(tasId){
+    setTask(
+      task.map((t)=>{
+        if(t.id === tasId){
+          return {...t, isFavorite: !t.isFavorite}
+        }
+        return t;
+      })
+    )
+
    }
 
    function handleSearch(searchTerm){
